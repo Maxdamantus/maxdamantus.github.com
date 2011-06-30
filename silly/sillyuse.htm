@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="sillylib.js"></script>
+    <script type="text/javascript">
+	function print(m){
+		document.body.appendChild(document.createTextNode(m));
+		document.body.appendChild(document.createElement("br"));
+	}
+
+	silly
+	.sleep(1000)
+	.do(function(){
+		print("one");
+	})
+	.sleep(5000)
+	.do(function(){
+		print("two");
+	})
+	.sleep(3000)
+	.do(function(){
+		print("three");
+	});
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
