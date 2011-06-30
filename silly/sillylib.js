@@ -14,15 +14,19 @@ var silly = function(){
 	silly = {
 		sleep: function(x){
 			return mn(this, function(con){
-				setTimeout(con, x);
-			};
+				return function(){
+					setTimeout(con, x);
+				};
+			});
 		},
 
 		async: function(f){
 			return mn(this, function(con){
-				f();
-				setTimeout(con, 0);
-			};
+				return function(){
+					f();
+					setTimeout(con, 0);
+				};
+			});
 		},
 
 		_c: function(f){
