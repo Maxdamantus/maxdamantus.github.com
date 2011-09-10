@@ -1,3 +1,5 @@
+var debug = false;
+
 var web = {
         ajcons : 
                 XMLHttpRequest? XMLHttpRequest :
@@ -365,6 +367,10 @@ function level(data, images){
 			canv.clip();
 			canv.clearRect(left, top, wd, ht);
 			canv.restore();
+			if(debug){
+				canv.strokeStyle = "#00ff00";
+				canv.strokeRect(0, 0, wd, ht);
+			}
 			cobj.x = left;
 			cobj.y = top;
 			cobj.w = wd;
