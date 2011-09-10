@@ -1,3 +1,5 @@
+var d = false;
+
 var web = {
         ajcons : 
                 XMLHttpRequest? XMLHttpRequest :
@@ -365,78 +367,3 @@ function level(data, images){
 			canv.clip();
 			canv.clearRect(left, top, wd, ht);
 			canv.restore();
-			cobj.x = left;
-			cobj.y = top;
-			cobj.w = wd;
-			cobj.h = ht;
-		}
-	
-		function draw(canv, left, top, wd, ht){
-			var bx, by;
-
-			if(wd != width || ht != height)
-				resized(wd, ht);
-			canv.clearRect(left, top, wd, ht);
-			for(bx = left - images.sky.width + mod(left, images.sky.width); bx < left + wd; bx += images.sky.width)
-				for(by = top - mod(top, images.sky.height); by < top + ht; by += images.sky.height)
-					canv.drawImage(images.sky, bx, by, images.sky.width, images.sky.height);
-
-			cdraw(canv, left, top, wd, ht);
-		}
-
-		return {
-			draw: draw
-		};
-	}
-	
-	return {
-		renderer: renderer
-	};
-}
-
-function replayloader(levfile, recfiles){
-	var canve, canvc, lev, levr, recs = [], images, loader;
-	var cur = 0, x;
-
-	loader = web.loader();
-	images = loadGraphics(loader, ["ground", "sky", "wheel", "bike", "susp1", "susp2", "head"]);
-	loader.load92(levfile, function(data){
-		lev = level(data, images);
-	});
-	recfiles.forEach(function(recfile){
-		loader.load92(recfile, function(data){
-			recs.push(player(data, images));
-		});
-	});
-	loader.onload = function(){
-		document.body.appendChild(canve = document.createElement("canvas"));
-		canvc = canve.getContext("2d");
-		if(canvc.mozImageSmoothingEnabled)
-			canvc.mozImageSmoothingEnabled = false;
-		canve.onclick = function(){
-			cur++;
-			cur %= recs.length;
-		};
-		levr = lev.renderer();
-		setInterval(function(){
-			var cw, ch, cx, cy;
-			for(x = 0; x < recs.length; x++)
-				recs[x].nextframe();
-			canve.width = cw = window.innerWidth;
-			canve.height = ch = window.innerHeight;
-			cx = Math.round(recs[cur].xp - cw/2);
-			cy = Math.round(recs[cur].yp - ch/2);
-
-			canvc.save();
-				canvc.translate(-cx, -cy);
-				levr.draw(canvc, cx, cy, cw, ch);
-				for(x = 0; x < recs.length; x++)
-					if(x != cur)
-						recs[x].draw(canvc);
-				recs[cur].draw(canvc);
-			canvc.restore();
-		}, 1000/30);
-	}
-}
-
-window.onload = function(){replayloader("sm80.l92", ["sm80antz.r92"])};
