@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 var debug = false;
-=======
-var d = false;
->>>>>>> 7a55ba2141564d2e18757eeae80faa591ecf8654
 
 var web = {
         ajcons : 
@@ -370,7 +366,6 @@ function level(data, images){
 					drawpoly(canv, polys[x]);
 			canv.clip();
 			canv.clearRect(left, top, wd, ht);
-<<<<<<< HEAD
 			canv.restore();
 			if(debug){
 				canv.strokeStyle = "#00ff00";
@@ -451,6 +446,3 @@ function replayloader(levfile, recfiles){
 }
 
 window.onload = function(){replayloader("sm80.l92", ["sm80antz.r92"])};
-=======
-			canv.restore();
->>>>>>> 7a55ba2141564d2e18757eeae80faa591ecf8654
