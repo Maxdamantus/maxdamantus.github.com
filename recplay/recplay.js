@@ -1,15 +1,12 @@
 var debug = false;
 
 var web = {
-        ajcons : 
-                XMLHttpRequest? XMLHttpRequest :
-                ActiveXObject && ActiveXObject("Msxml2.XMLHTTP")? ActiveXObject("Msxml2.XMLHTTP") :
-                ActiveXObject && ActiveXObject("Microsoft.XMLHTTP")? ActiveXObject("Microsoft.XMLHTTP") : null,
+        ajcons : function(){ return new XMLHttpRequest(); },
 
         get : function(page, func, onpart){
                 var aj;
 
-                aj = new web.ajcons;
+                aj = web.ajcons();
                 aj.onreadystatechange = function(){
                         if(func && aj.readyState == 4 || (onpart && aj.readyState == 3))
                                 func(aj.responseText, aj.readyState == 4);
