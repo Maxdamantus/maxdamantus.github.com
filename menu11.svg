@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+	  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<!--
+    ### begin_: file metadata
+    ### <region-file_info>
+	    ### main:
+	    ###   - name : xml.svg
+	    ###     date : created="Wed Jan 1, 1980, 00:00:00 AM"
+	    ###     last : lastmod="Wed Jan 1, 1980, 00:00:00 AM"
+	    ###     desc : |
+	    ###         Test by Max
+	    ### </region-file_info>
+    -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1024" height="768" id="img" onload="loadfunc()">
+	<msvgwm xmlns="http://ntus.uni.cc/2008/msvgwm">
+		<mstyle name="menu_style">
+			<![CDATA[
+			function(width, height, type, pos, numchilds){
+				var ret, bg, fg, bd, sd, line;
+
+				ret = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+				if(pos & 1){
+					sd = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					sd.setAttribute("x", 4);
+					sd.setAttribute("y", 4);
+					sd.setAttribute("width", width);
+					sd.setAttribute("height", (numchilds*height));
+					sd.setAttribute("fill", "grey");
+					sd.setAttribute("filter", "url(#shadow)");
+					ret.appendChild(sd);
+				}
+
+				bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+
+				bg.setAttribute("fill", "url(#menu_bg)");
+				bg.setAttribute("width", width);
+				bg.setAttribute("height", height);
+				ret.appendChild(bg);
+
+				if(pos){
+					bd = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	
+					line = "";
+					if(pos & 1)
+						line +=
+						"M 0 " + height + " " +
+						"L 0 0 " +
+						"L " + width + " 0 " +
+						"L " + width + " " + height + " ";
+					if(pos & 2)
+						line +=
+						"M 0 0 L 0 " + height + " " +
+						"M " + width + " 0 L " + width + " " + height + " ";
+					if(pos & 4)
+						line +=
+						"M 0 0 " +
+						"L 0 " + height + " " +
+						"L " + width + " " + height + " " +
+						"L " + width + " 0 ";
+	
+					bd.setAttribute("d", line);
+					bd.setAttribute("fill", "none");
+					bd.setAttribute("stroke", "#777777");
+					ret.appendChild(bd);
+				}
+
+				if(type){
+					fg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					fg.setAttribute("fill", "url(#menu_fg)");
+					fg.setAttribute("width", width-2);
+					fg.setAttribute("height", height);
+					fg.setAttribute("rx", 4);
+					fg.setAttribute("x", 1);
+					ret.appendChild(fg);
+				}
+				
+				return ret;
+			}
+			]]>
+		</mstyle>
+		<mstyle name="window_style">
+			<![CDATA[
+			function(t, w, h, n){
+				var ret;
+
+				ret = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+				b = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				b.setAttribute("x", -3);
+				b.setAttribute("y", -20);
+				b.setAttribute("width", w + 6);
+				b.setAttribute("height", h + 23);
+				b.setAttribute("fill", (t)?"#ff0000":"#aa0000");
+
+				p = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				p.setAttribute("x", 0);
+				p.setAttribute("y", 0);
+				p.setAttribute("width", w);
+				p.setAttribute("height", h);
+				p.setAttribute("fill", "#ffffff");
+
+				t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				t.setAttribute("x", 20);
+				t.setAttribute("y", -5);
+				t.setAttribute("height", 15);
+				t.setAttribute("font-family", "Arial");
+				t.setAttribute("fill", (t)?"#000000":"#ffffff");
+				t.appendChild(document.createTextNode(n));
+				
+				ret.appendChild(b);
+				ret.appendChild(p);
+				ret.appendChild(t);
+				return ret;
+			}
+			]]>
+		</mstyle>
+		<window name="Biggest" style="window_style" width="300" height="100">
+			<menu data="File" group="1" style="menu_style" tselect="#555555" tunselect="#000000">
+				<item onselect='alert("New")' data="New" />
+				<item onselect='alert("Open")' data="Open" />
+				<item data="Open Recent">
+					<item onselect='alert("recent1")' data="/home/max/html/menu.svg" />
+					<item onselect='alert("recent2")' data="/home/max/html/menu2.svg" />
+					<item data="Please sir, can I have some more?">
+						<item data="More?">
+							<item onselect='alert("MMMOOOOOAAAAAAAARRRRRRRR?!")' data="MOAR!?" />
+						</item>
+					</item>
+				</item>
+			</menu>
+			<menu data="Edit" group="1" style="menu_style" tselect="#555555" tunselect="#000000">
+				<item onselect='alert("Undo")' data="Undo" />
+				<item onselect='alert("Redo")' data="Redo" />
+				<item onselect='alert("Cut")' data="Cut" />
+				<item onselect='alert("Copy")' data="Copy" />
+				<item onselect='alert("Paste")' data="Paste" />
+				<item onselect='alert("Delete")' data="Delete" />
+			</menu>
+			<menu data="View" group="1" style="menu_style" tselect="#555555" tunselect="#000000">
+				<item data="This does nothing" />
+			</menu>
+		</window>
+		<window name="Middlest" style="window_style" width="640" height="480">
+			<menu data="Test" group="2" style="menu_style" tselect="#555555" tunselect="#000000">
+				<item data="qwery" />
+				<item data="asdfg" />
+			</menu>
+		</window>
+		<window name="Smallest" style="window_style" width="100" height="100">
+			<menu data="Test2" group="3" style="menu_style" tselect="#555555" tunselect="#000000">
+				<item data="zxcvb" />
+			</menu>
+		</window>
+		<window name="Google" style="window_style" width="800" height="600">
+			<esvg>
+				<foreignObject xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+					<body xmlns="http://www.w3.org/1999/xhtml">
+						<iframe src="http://google.com/" width="790" height="590"/>
+					</body>
+				</foreignObject>
+			</esvg>
+		</window>
+	</msvgwm>
+	<defs>
+		<linearGradient id="menu_fg" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop offset="0%" style="stop-color: #B4D4F9;"/>
+			<stop offset="100%" style="stop-color: #9FC2EC;"/>
+		</linearGradient>
+		<linearGradient id="menu_bg" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="0%" style="stop-color: #F8F8F8;"/>
+			<stop offset="50%" style="stop-color: #E9E8E7;"/>
+			<stop offset="100%" style="stop-color: #F8F8F8;"/>
+		</linearGradient>
+		<linearGradient id="shadow_hor" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="0%" style="stop-color: #B4D4F9;"/>
+			<stop offset="100%" style="stop-color: #9FC2EC;"/>
+		</linearGradient>
+		<filter id="shadow" filterRes="100" x="0" y="0">
+			<feGaussianBlur stdDeviation="4 4"/>
+			<feOffset dx="4" dy="4"/>
+		</filter>
+	</defs>
+
+	<rect x="30" y="30" width="100" height="100" rx="2" fill="red"
+		stroke="black" stroke-width="2px" />
+	<rect x="40" y="40" width="100" height="100" rx="4" fill="blue"
+		stroke="black" stroke-width="2px" fill-opacity="0.7"/>
+	<script type="text/javascript">
+		<![CDATA[
+		var img;
+		var test;
+		var menus = [], windows = [];
+		var settings = [], stylefuncs = [];
+
+		function matrix(a, b, c, d, e, f){
+			return "matrix(" +
+				a + "," +
+				b + "," +
+				c + "," +
+				d + "," +
+				e + "," +
+				f + ")";
+		}
+
+		function mwindow(window_svg, width, height, x, y, renderer){
+			windows[this.id = windows.length] = this;
+			[this.svg, this.w, this.h, this.x, this.y, this.renderer] = [window_svg, width, height, x, y, renderer];
+			this.svg.appendChild(this.g = document.createElementNS("http://www.w3.org/2000/svg", "g"));
+			this.dragU = this.dragK = this.dragS = 0;
+			this.objects = []; this.ol = 0;
+
+			this.init = function(){
+				this.g.appendChild(this.bg = this.renderer(1, this.w, this.h, this.name));
+				this.bg.setAttribute("onmousedown", "windows[" + this.id + "].begindrag(evt)");
+				this.g.setAttribute("transform", "translate(" + this.x + "," + this.y + ")");
+				this.tofront();
+			}
+
+			this.tofront = function(){
+				if(this.istop)
+					return;
+				this.svg.removeChild(this.g);
+				this.svg.appendChild(this.g);
+				for(x in windows)
+					if(x != this.id && windows[x].istop){
+						windows[x].istop = 0;
+						windows[x].redraw(1);
+					}
+				this.istop = 1;
+				this.redraw(1);
+			}
+
+			this.redraw = function(type){
+				var swap, attr = [], x;
+				if(type & 1){
+					if(swap = this.bg.getAttribute("onmousedown"))
+						attr["onmousedown"] = swap;
+					if(swap = this.bg.getAttribute("onmouseup"))
+						attr["onmouseup"] = swap;
+					if(swap = this.bg.getAttribute("onmousemove"))
+						attr["onmousemove"] = swap;
+						this.g.replaceChild(swap  = this.renderer(this.istop, this.w, this.h, this.name), this.bg);
+					this.bg = swap;
+					for(x in attr)
+						this.bg.setAttribute(x, attr[x]);
+				}
+				if(type & 2){
+					skewX = (-((this.dragS/(this.h/this.w)*(Math.PI/180)/180) * (this.dragY/this.h*2 -1)));
+					skewY = (-((this.dragU/(this.w/this.h)*(Math.PI/180)/90) * (this.dragX/this.h*2 -1)));
+					tx = (this.dragstate)?Math.tan(skewX*Math.PI/180):0;
+					ty = (this.dragstate)?Math.tan(skewY*Math.PI/180):0;
+					//matrix(1, ty, tx, 1, 0, 0)
+//					this.g.setAttribute("transform", "translate(" + (this.x - ((this.dragstate)? (Math.tan(skewX*Math.PI/180)*this.dragY) : 0)) + "," + (this.y - ((this.dragstate)? (Math.tan(skewY*Math.PI/180)*this.dragX) : 0)) + ") skewX(" + skewX + ") skewY(" + skewY + ")");
+					this.g.setAttribute("transform", /* "skewX("+skewX+") skewY("+skewY+")" */ matrix(1, skewY, skewX, 1, 0, 0) + "translate("+(this.x - tx)+","+(this.y - ty)+")");
+				}
+				if(type & 4){
+					if(this.objects.length > this.ol){
+						for(x = this.objects.length; x < this.ol; x++){
+							this.g.appendChild(this.objects[x]);
+//							this.objects[x].setAttribute("width", this.w);
+//							this.objects[x].setAttribute("height", this.h);
+						}
+					}
+					this.ol = this.objects.length;
+				}
+			}
+
+			this.begindrag = function(evt){
+				var me = this;
+//				alert("begindrag");
+//				for(x in evt)
+//					alertstuff += (x) + " = " + evt[x] + "\n";
+//				alert(alertstuff);
+//				alert(evt.clientX + ", " + evt.clientY);
+				this.dragX = evt.clientX - (this.dragO = this.x);
+				this.dragY = evt.clientY - (this.dragP = this.y);
+				if(this.dragT)
+					clearTimeout(this.dragT);
+				this.dragT = setInterval(
+					function(){
+						if(me.dragstate){
+							me.dragS -= me.x - me.dragO;
+							me.dragU -= me.y - me.dragP;
+						}
+						me.dragO = me.x;
+						me.dragP = me.y;
+						me.dragS -= (me.dragS/5);
+						me.dragU -= (me.dragU/5);
+						if(me.dragS < 1 && me.dragS > -1)
+							me.dragS = 0;
+						if(me.dragU < 1 && me.dragU > -1)
+							me.dragU = 0;
+						if(!me.dragstate && !me.dragS && !me.dragU){
+							clearTimeout(me.dragT);
+							me.dragT = 0;
+						}
+						me.redraw(2);
+					},
+				100);
+				this.svg.setAttribute("onmouseup", "windows[" + this.id + "].enddrag(evt)");
+				this.svg.setAttribute("onmousemove", "windows[" + this.id + "].movedrag(evt)");
+				this.bg.removeAttribute("onmousedown");
+				this.tofront();
+				this.dragstate = 1;
+			}
+
+			this.enddrag = function(){
+//				alert("enddrag");
+				this.svg.removeAttribute("onmousemove");
+				this.svg.removeAttribute("onmouseup");
+				this.bg.setAttribute("onmousedown", "windows[" + this.id + "].begindrag(evt)");
+				this.dragstate = 0;
+			}
+
+			this.movedrag = function(evt){
+//				alert("movedrag");
+				this.x = evt.clientX - this.dragX;
+				this.y = evt.clientY - this.dragY;
+				this.redraw(2);
+			}
+
+		}
+	
+		function menu(menu_svg, menu_title, xpos, ypos){
+			menus[this.id = menus.length] = this;
+			[this.svg, this.title, this.x, this.y, this.w, this.h] = [menu_svg, menu_title, (xpos)?xpos:0, (ypos)?ypos:0, 0, 20];
+
+			this.init = function(){
+				this.children = [];
+				this.opened = this.visible = 0;
+				this.shape = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				this.fill = "url(#grad1)";
+				this.bgfill = "url(#grad2)";
+				this.textcol1 = (this.data.style.tunselect)?this.data.style.tunselect:"white";
+				this.textcol2 = (this.data.style.tselect)?this.data.style.tselect:"black";
+				this.font = "Arial";
+				this.msize = 0;
+				this.msize_timer = false;
+				if(this.colour)
+				this.shape.setAttribute("stroke", this.colour);
+				if(this.fill)
+				this.shape = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				this.shape.setAttribute("transform", "translate(" + this.x + ", " + this.y + ")");
+				this.shape.setAttribute("onclick", "menus[" + this.id + "].toggle()");
+				this.shape.setAttribute("onmouseover", "menus[" + this.id + "].tophover()");
+				
+				this.text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				this.text.setAttribute("fill", this.textcol1);
+				this.text.setAttribute("x", 3);
+				this.text.setAttribute("y", this.h*0.75);
+				this.text.setAttribute("height", this.h*0.75);
+				this.text.setAttribute("font-family", this.font);
+				this.text.appendChild(document.createTextNode(this.title));
+				this.shape.appendChild(this.text);
+				
+				this.show();
+				this.top_w = this.text.getBBox().width + 9;
+				this.shape.insertBefore(this.top_unselect = this.data.style(this.top_w, this.h, 0, 0, this.children.length), this.text);
+				this.top_select = this.data.style(this.top_w, this.h, 1, 0, this.children.length);
+				this.hide();
+			}
+			
+			this.show = function(){
+				var top;
+				if(this.visible)
+					return;
+				this.svg.appendChild(this.shape);
+				this.visible = true;
+			}
+			
+			this.hide = function(){
+				if(!this.visible)
+					return;
+				this.svg.removeChild(this.shape);
+				this.visible = false;
+			}
+
+			this.tophover = function(){
+				var x;
+				for(x = 0; x < menus.length; x++){
+					if(x != this.id){
+						if(menus[x].toplev && menus[x].opened && menus[x].group === this.group){
+							menus[x].close();
+							this.open();
+							return;
+						}
+					}
+				}
+			}
+			
+			this.open = function(redraw){
+				var x, l, w, item, me, pos;
+				if(this.opened)
+					return;
+				if(this.visible)
+					for(x = 0; x < menus.length; x++)
+						if(menus[x].toplev)
+							menus[x].close();
+				if(this.p){
+					w = this.p[0].y + this.p[0].h*this.p[1];
+					if(w != this.y){
+						this.y = w;
+						redraw = 1;
+					}
+				}
+				this.shape.replaceChild(this.top_select, this.top_unselect);
+				this.text.setAttribute("fill", this.textcol2);
+				for(x = 0; x < this.children.length; x++){
+					if(this.children[x].length < 5){
+						if(!this.children[x][3])
+							this.children[x][3] = document.createElementNS("http://www.w3.org/2000/svg", "text");
+						this.children[x][3].setAttribute("fill", this.textcol1);
+						this.children[x][3].setAttribute("x", 3 + this.h);
+						this.children[x][3].setAttribute("y", this.h*0.75);
+						this.children[x][3].setAttribute("height", this.h*0.75);
+						this.children[x][3].setAttribute("font-family", this.font);
+						this.children[x][3].appendChild(document.createTextNode(this.children[x][0]));
+
+						if(!this.children[x][5]){
+							this.children[x][5] = document.createElementNS("http://www.w3.org/2000/svg", "g");
+							this.children[x][5].appendChild(this.children[x][3]);
+							this.children[x][5].setAttribute("onmouseover", "menus[" + this.id + "].mouse(" + x + ", 0)");
+							this.children[x][5].setAttribute("onmouseout", "menus[" + this.id + "].mouse(" + x + ", 1)");
+							this.children[x][5].setAttribute("onclick", "menus[" + this.id + "].mouse(" + x + ", 2)");
+						}
+												
+						if(!this.children[x][6]){
+							this.children[x][6] = 1;
+							this.svg.appendChild(this.children[x][5]);
+						}
+						if((l = this.children[x][3].getBBox().width + this.h + 9) > this.w)
+							this.w = l;
+					}
+				}
+				for(x = 0; x < this.children.length; x++){
+					this.children[x][5].setAttribute("transform", "translate(" + this.x + ", " + (this.y + (x * this.h * this.msize) + this.h) + ") scale(0, 0)");
+					if(!this.children[x][6]){
+						this.children[x][6] = 1;
+						this.svg.appendChild(this.children[x][5]);
+					}
+					pos = ((x == 0)? 1 : 0) | ((x == this.children.length - 1)? 4 : 2);
+					if(!this.children[x][4]){
+						this.children[x][4] = [0, this.data.style(this.w, this.h, 0, pos, this.children.length), this.data.style(this.w, this.h, 1, pos, this.children.length)];
+						this.children[x][5].insertBefore(this.children[x][4][1], this.children[x][3]);
+					}
+				}
+				me = this;
+				if(this.msize_timer)
+					clearTimeout(this.msize_timer);
+				this.msize_timer = setInterval(function(){me.msize_step(1)}, 10);
+				this.opened = 1;
+			}
+			
+			this.msize_step = function(n){
+				var x;
+//				alert(this.msize);
+				for(x = 0; x < this.children.length; x++)
+					this.children[x][5].setAttribute("transform", "translate(" + this.x + ", " + (this.y + (x * this.h * this.msize) + this.h) + ") scale(" + (this.msize) + ", " + (this.msize) + ")");
+				if((n)?(this.msize < 0.9):(this.msize > 0.1))
+					this.msize += (n)?(0.1):(-0.1);
+				else{
+					clearTimeout(this.msize_timer);
+					this.msize_timer = false;
+					if(!n){
+						for(x = 0; x < this.children.length; x++)
+							this.svg.removeChild(this.children[x][5]);
+					}
+				}
+			}
+			
+			this.close = function(){
+				var me, x;
+				if(!this.opened)
+					return;
+				this.opened = 0;
+				this.shape.replaceChild(this.top_unselect, this.top_select);
+				this.text.setAttribute("fill", this.textcol1);
+				if(this.msize_timer)
+					clearTimeout(this.msize_timer);
+				me = this;
+				this.msize_timer = setInterval(function(){me.msize_step(0)}, 10);
+				for(x = 0; x < this.children.length; x++){
+					this.setcstatus(x, 0);
+					if(this.children[x][6]){
+						this.children[x][6] = 0;
+						if(this.children[x][1] && typeof(this.children[x][1]) == "object")
+							this.children[x][1].close();
+					}
+				}
+			}
+	
+			this.toggle = function(){
+				((this.opened)?this.close():this.open());
+			}
+
+			this.setcstatus = function(child_id, status){
+				if(!this.children[child_id])
+					return;
+				if(status && this.children[child_id][4][0] === 0){
+					this.children[child_id][4][1] = this.children[child_id][5].replaceChild(this.children[child_id][4][2], this.children[child_id][4][1]);
+					this.children[child_id][3].setAttribute("fill", this.textcol2);
+					this.children[child_id][4][0] = 1;
+				}
+				else if(!status && this.children[child_id][4][0] === 1){
+					this.children[child_id][4][2] = this.children[child_id][5].replaceChild(this.children[child_id][4][1], this.children[child_id][4][2]);
+					this.children[child_id][3].setAttribute("fill", this.textcol1);
+					this.children[child_id][4][0] = 0;
+				}
+			}
+	
+			this.mouse = function(child_id, action){
+				var x, swap;
+				if(!this.children[child_id])
+					return;
+				if(action == 0){
+					if(this.textcol2)
+						this.children[child_id][3].setAttribute("fill", this.textcol2);	
+					for(x = 0; x < this.children.length; x++)
+						if(x != child_id){
+							this.setcstatus(x, 0);
+							if(this.children[x][1] && typeof(this.children[x][1]) == "object")
+								this.children[x][1].close();
+						}
+					this.setcstatus(child_id, 1);
+					if(this.children[child_id][1] && typeof(this.children[child_id][1]) == "object"){
+						if(this.children[child_id][1].x != this.x + this.w){
+							this.children[child_id][1].x = this.x + this.w;
+							this.children[child_id][1].open(1);
+						}else
+							this.children[child_id][1].open();
+					}
+				}
+				else if(action == 1){
+					this.setcstatus(x, 0);
+				}
+				else if(action == 2){
+					if(typeof(this.children[child_id][1]) == "string")
+						eval(this.children[child_id][1]);
+				}
+			}
+	
+			this.addchild = function(child_name, child_func, controls){
+				this.children.push([child_name, (child_func)?child_func:null, controls]);
+			}
+
+			this.addsubmenu = function(child_name, submenu, controls){
+//				alert("addsubmenu: " + ((this.children.length) * this.h + this.y));
+				[submenu.x, submenu.y, submenu.p] = [this.x + this.w, (this.children.length) * this.h + this.y, [this, this.children.length]];
+				this.children.push([child_name, submenu, controls]);
+			}	
+		}
+
+		function msvgwm_load(svg){
+			var y, x, desc, children, menu, wind, xpos = 5, ypos = 5, width, height, data;
+			desc = svg.getElementsByTagName("msvgwm");
+			for(y = 0; y < desc.length; y++){
+//				alert("("+typeof(desc[y])+") " + desc[y]);
+//				alert(children = desc[y].item().childNodes);
+//					alert("tagName: " + children[x].tagName);
+				msvgwm_plane(svg, desc[y]);
+						
+			}
+		}
+
+		function msvgwm_plane(object, desc){
+			var y, x, children, menu, wind, xpos = 5, ypos = 5, width, height, data;
+//			desc = svg.getElementsByTagName("msvgwm");
+//				alert("("+typeof(desc[y])+") " + desc[y]);
+//				alert(children = desc[y].item().childNodes);
+				children = desc.childNodes;
+				for(x = 0; x < children.length; x++){
+//					alert("tagName: " + children[x].tagName);
+					if(children[x].tagName == "mstyle")
+						stylefuncs[children[x].getAttribute("name")] = eval("("+children[x].textContent+")");
+					else if(children[x].tagName == "menu"){
+						//						alert("Parsing toplevel menu");
+						menu = msvgwm_parse_menu(object, children[x], null, 1, xpos, ypos);
+						xpos += parseFloat(menu.top_w) + 3;
+					}
+					else if(children[x].tagName == "window"){
+						wind = msvgwm_parse_wind(object, children[x]);
+					}
+					else if(children[x].tagName == "esvg"){
+						fo = document.createElementNS("http://www.w3.org/2000/svg", "g");
+						ch = children[x].childNodes;
+						for(y in ch){
+							//
+							if(ch[y] && ch[y].tagName){
+								c = ch[y].cloneNode(1);
+								c.prefix = "svg";
+//								c.namespaceURI = "http://www.w3.org/2000/svg";
+								fo.appendChild(c);
+							}
+						}
+						if(object.objects){
+							object.objects[object.objects.length] = fo;
+							object.redraw(4);
+						}else
+							object.appendChild(fo);
+					}
+				}
+		}
+
+		function msvgwm_parse_wind(object, node){
+			var x, nodes, ret, v, renderer;
+
+			if(v = node.getAttribute("style"))
+				renderer = stylefuncs[v];
+			else
+				renderer = function(t, w, h){
+					var a;
+					a = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+					a.setAttribute("width", w);
+					a.setAttribute("height", h);
+					return a;
+				}
+				
+			ret = new mwindow(object, (v = node.getAttribute("width"))?parseInt(v):640, (v = node.getAttribute("height"))?parseInt(v):480, 100, 100, renderer);
+			ret.name = (v = node.getAttribute("name"))?v:"Null";
+			ret.init();
+			msvgwm_plane(ret.g, node);
+			return ret;
+		}
+
+		function msvgwm_parse_menu(svg, node, data, istoplev, xpos, ypos){
+			var x, nodes = node.childNodes, children, ret, get;
+
+			if(!data){
+				data = {style: 
+					function(width, height, type){
+						var ret; ret = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+						ret.setAttribute("fill", (type)?"#ff0000":"#000000");
+						ret.setAttribute("width", width);
+						ret.setAttribute("height", height);
+						return ret;
+					}};
+			}
+			ret = new menu(svg, node.getAttribute("data"), xpos, ypos);
+			if(get = node.getAttribute("style"))
+				data.style = stylefuncs[get];
+			if(get = node.getAttribute("tselect"))
+				data.style.tselect = get;
+			if(get = node.getAttribute("tunselect"))
+				data.style.tunselect = get;
+			ret.data = data;
+			ret.init();
+			for(x in nodes){
+				if(nodes[x].tagName == "item"){
+					if(nodes[x].childNodes.length == 0)
+						ret.addchild(nodes[x].getAttribute("data"), nodes[x].getAttribute("onselect"), data);
+					else
+						ret.addsubmenu(nodes[x].getAttribute("data"), msvgwm_parse_menu(svg, nodes[x], data), data);
+				}
+			}
+			if(istoplev){
+				ret.show();
+				ret.group = node.getAttribute("group");
+				ret.toplev = 1;
+//				ret.msize = 0.5;
+			}
+			return ret;
+		}
+
+		function loadfunc(){
+			var x, text, tnode, wind;
+			img = document.getElementById("img");
+			msvgwm_load(img);
+			img.setAttribute("width", window.innerWidth);
+			img.setAttribute("height", window.innerHeight);
+			window.addEventListener("resize", function(){img.setAttribute("width", window.innerWidth); img.setAttribute("height", window.innerHeight);}, true);
+		}
+		]]>
+	</script>
+</svg>
