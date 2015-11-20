@@ -1,4 +1,4 @@
-(function(){
+void (function(){
 if(window.thisFlagIsForCheckingThatMaxsScriptDoesntRunTwice) return;
 window.thisFlagIsForCheckingThatMaxsScriptDoesntRunTwice = true;
 function randcol(){var r = Math.floor(Math.random()*((1<<24)-1)).toString(16); return "#" + Array(7 - r.length).join("0") + r;}
@@ -22,3 +22,4 @@ setInterval(function(){
 	}
 
 }, 100);
+});
